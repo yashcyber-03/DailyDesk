@@ -278,108 +278,29 @@ export const toolContent: Record<string, ToolContent> = {
       { q: "How do I find a good base colour?", a: "Use Random base colour until something appeals, then try the different schemes." },
     ],
   },
-  "ai-summarizer": {
-    about:
-      "The AI Text Summarizer condenses long text into a short summary or bullet points. Choose how long the summary should be. The text you enter is sent to Google's Gemini API to create the result, so please do not paste passwords or other sensitive information. AI can make mistakes, so check important details.",
-    steps: [
-      "Paste your text, up to 8,000 characters.",
-      "Choose the length and format.",
-      "Click Summarize, then copy the result.",
-    ],
-    faqs: [
-      { q: "How much text can I summarize?", a: "Up to 8,000 characters at a time. For longer documents, summarize it in parts." },
-      { q: "Is the summary always accurate?", a: "It is usually good, but AI can miss or misstate details. Compare it with the original for anything important." },
-    ],
-  },
-  "ai-email-writer": {
-    about:
-      "The AI Email Writer turns a few rough notes into a complete email with a subject line, greeting and sign-off. Pick a tone and length. The text you enter is sent to Google's Gemini API to create the result, so please do not paste passwords or other sensitive information. AI can make mistakes, so check important details.",
-    steps: [
-      "Describe what the email should say.",
-      "Choose the tone and length.",
-      "Generate, then edit the email and fill in any [placeholders].",
-    ],
-    faqs: [
-      { q: "Does it know the recipient's name?", a: "No. It uses placeholders like [Name] where it lacks details. Replace them before sending." },
-      { q: "Can I change the result?", a: "Yes. Copy it and edit it, or generate again with different notes or another tone." },
-    ],
-  },
-  "ai-grammar-checker": {
-    about:
-      "The AI Grammar Checker fixes grammar, spelling and punctuation while keeping your meaning and voice. Pick American, British or Indian English and choose whether to see a list of the changes. The text you enter is sent to Google's Gemini API to create the result, so please do not paste passwords or other sensitive information. AI can make mistakes, so check important details.",
-    steps: [
-      "Paste your text.",
-      "Choose the English variety and whether to list changes.",
-      "Check the grammar and copy the corrected text.",
-    ],
-    faqs: [
-      { q: "Will it change my writing style?", a: "It aims to keep your voice and only fix errors and clear problems." },
-      { q: "Can it miss mistakes?", a: "Yes. No checker is perfect, so read important text again before sending." },
-    ],
-  },
-  "ai-text-rewriter": {
-    about:
-      "The AI Text Rewriter rewords your text in the tone you choose, such as professional, casual or persuasive, and can make it shorter or longer while keeping the meaning. The text you enter is sent to Google's Gemini API to create the result, so please do not paste passwords or other sensitive information. AI can make mistakes, so check important details.",
-    steps: [
-      "Paste the text to reword.",
-      "Choose a tone and length.",
-      "Rewrite and copy the new version.",
-    ],
-    faqs: [
-      { q: "Will the meaning stay the same?", a: "It is asked to keep your facts and meaning, but please read the result to be sure." },
-      { q: "Can I rewrite the result again?", a: "Yes. Copy it back into the box and choose a different tone." },
-    ],
-  },
-  "ai-notes-generator": {
-    about:
-      "The AI Notes Generator turns text or a topic into organized study notes: an outline, bullet points, questions and answers, or a summary with key terms. The text you enter is sent to Google's Gemini API to create the result, so please do not paste passwords or other sensitive information. AI can make mistakes, so check important details.",
-    steps: [
-      "Paste your material or type a topic.",
-      "Choose the note style and level of detail.",
-      "Generate and copy your notes.",
-    ],
-    faqs: [
-      { q: "Can I enter just a topic?", a: "Yes, but notes from a topic use general knowledge and may contain mistakes. For exams, check them against your textbook." },
-      { q: "What is the question and answer style for?", a: "It makes self-test questions, each followed by a short answer, which is handy for revision." },
-    ],
-  },
-  "ai-explainer": {
-    about:
-      "The AI Explanation Assistant explains a concept or a confusing passage at the level you choose, from a 10-year-old to an expert, with or without an example. The text you enter is sent to Google's Gemini API to create the result, so please do not paste passwords or other sensitive information. AI can make mistakes, so check important details.",
-    steps: [
-      "Type a concept or paste a passage.",
-      "Choose the level and style.",
-      "Explain, and generate again at another level if needed.",
-    ],
-    faqs: [
-      { q: "What if I do not understand the answer?", a: "Choose a simpler level and generate again, or ask a follow-up in the AI Assistant." },
-      { q: "Can it explain anything?", a: "It works best on well-known topics. For very new, specialist or disputed topics, double-check with trusted sources." },
-    ],
-  },
   "todo-list": {
     about:
-      "The To-Do List lets you add, edit, tick off and delete tasks, set optional due dates and filter by active or done. Without an account your tasks stay in this browser. When you log in, they are saved to your account and available on any device.",
+      "The To-Do List lets you add, edit, tick off and delete tasks, set optional due dates and filter by active or done. Tasks are saved only in this browser.",
     steps: [
       "Type a task, optionally pick a due date, and press Add.",
       "Tick the box when it is done, or use the pencil to edit it.",
-      "Log in to sync your tasks across devices.",
+      "Tasks remain in this browser and are not synced to another device.",
     ],
     faqs: [
-      { q: "Where are my tasks stored?", a: "If you are not logged in, only in this browser on this device. If you are logged in, in your private DailyDesk account, where only you can read them." },
-      { q: "Can I move my browser tasks to my account?", a: "Yes. After logging in you are offered a button to move the tasks saved in this browser into your account." },
+      { q: "Where are my tasks stored?", a: "Only in this browser on this device." },
     ],
   },
   "notes-manager": {
     about:
-      "The Notes Manager is a simple place to write, search and keep notes. Notes are saved in your browser, or in your account when you are logged in so you can open them anywhere.",
+      "The Notes Manager is a simple place to write, search and keep notes. Notes are saved only in this browser.",
     steps: [
       "Choose New note and write a title and text.",
       "Press Save. Use the search box to find notes later.",
-      "Log in to keep your notes on every device.",
+      "Your notes stay in this browser and are not synced to another device.",
     ],
     faqs: [
-      { q: "Is there a size limit?", a: "Each note can be up to 20,000 characters, and you can keep up to 500 notes in an account." },
-      { q: "Are my notes private?", a: "Yes. Notes in an account are protected so that only you can read them. Notes saved in your browser never leave your device." },
+      { q: "Is there a size limit?", a: "Each note can be up to 20,000 characters, and up to 1,000 notes can be stored in this browser." },
+      { q: "Are my notes private?", a: "Notes stay in this browser and are not sent to DailyDesk." },
     ],
   },
   "pomodoro-timer": {
@@ -397,20 +318,20 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "daily-planner": {
     about:
-      "The Daily Planner lets you plan each day with optional times, tick items off as you go and move between days. Plans are saved in your browser, or in your account when you are logged in.",
+      "The Daily Planner lets you plan each day with optional times, tick items off as you go and move between days. Plans are saved only in this browser.",
     steps: [
       "Pick a day, add a plan with an optional time and press Add.",
       "Tick items when they are done. Use the arrows to move between days.",
-      "Log in to see your plans on any device.",
+      "Your plans stay in this browser and are not synced to another device.",
     ],
     faqs: [
       { q: "Can I plan future days?", a: "Yes. Use the next-day arrow or pick any date." },
-      { q: "How many plans can I save?", a: "Up to 2,000 entries in an account." },
+      { q: "How many plans can I save?", a: "Up to 1,000 entries can be stored in this browser." },
     ],
   },
   "habit-tracker": {
     about:
-      "The Habit Tracker helps you build routines. Add a habit, tick the days you did it, and watch your current and best streaks grow. Data is saved in your browser, or in your account when logged in.",
+      "The Habit Tracker helps you build routines. Add a habit, tick the days you did it, and watch your current and best streaks grow. Data is saved only in this browser.",
     steps: [
       "Add a habit you want to build.",
       "Tap each day you complete it. The last seven days are shown.",
@@ -418,7 +339,7 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     faqs: [
       { q: "How is the streak counted?", a: "It counts consecutive days ending today, or ending yesterday if you have not ticked today yet." },
-      { q: "How many habits can I track?", a: "Up to 50 habits in an account." },
+      { q: "How many habits can I track?", a: "Up to 1,000 habits can be stored in this browser." },
     ],
   },
   "password-generator": {

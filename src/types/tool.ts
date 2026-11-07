@@ -3,7 +3,6 @@ import type { LucideIcon } from "lucide-react";
 export type CategorySlug =
   | "pdf-tools"
   | "image-tools"
-  | "ai-tools"
   | "calculators"
   | "productivity";
 
@@ -22,8 +21,6 @@ export interface Tool {
   shortDescription: string;
   keywords: string[];
   icon: LucideIcon;
-  requiresAuth?: boolean;
-  proOnly?: boolean;
   popular?: boolean;
   isNew?: boolean;
 }

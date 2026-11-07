@@ -23,13 +23,6 @@ export const implementedSlugs = [
   "daily-planner",
   "habit-tracker",
   "password-generator",
-  // AI tools
-  "ai-summarizer",
-  "ai-email-writer",
-  "ai-grammar-checker",
-  "ai-text-rewriter",
-  "ai-notes-generator",
-  "ai-explainer",
   // image tools
   "image-compressor",
   "image-resizer",

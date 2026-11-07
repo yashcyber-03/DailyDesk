@@ -37,7 +37,6 @@ export function sitemapItems(toolSlugs: string[], categoryPaths: string[]): Site
   const fixed: SitemapItem[] = [
     { path: "/", priority: 1, changeFrequency: "weekly" },
     { path: "/tools", priority: 0.9, changeFrequency: "weekly" },
-    { path: "/ai-assistant", priority: 0.8, changeFrequency: "monthly" },
     { path: "/pricing", priority: 0.5, changeFrequency: "monthly" },
     { path: "/about", priority: 0.4, changeFrequency: "yearly" },
     { path: "/contact", priority: 0.4, changeFrequency: "yearly" },

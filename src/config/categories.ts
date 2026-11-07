@@ -1,4 +1,4 @@
-import { Calculator, CheckSquare, FileText, Image as ImageIcon, Sparkles } from "lucide-react";
+import { Calculator, CheckSquare, FileText, Image as ImageIcon } from "lucide-react";
 import type { Category } from "@/types/tool";
 
 export const categories: Category[] = [
@@ -15,13 +15,6 @@ export const categories: Category[] = [
     description: "Compress, resize, convert and crop images, plus QR codes and color palettes.",
     icon: ImageIcon,
     href: "/image-tools",
-  },
-  {
-    slug: "ai-tools",
-    name: "AI Tools",
-    description: "Summarize, rewrite, explain and write with Gemini-powered assistants.",
-    icon: Sparkles,
-    href: "/ai-tools",
   },
   {
     slug: "calculators",

@@ -1,8 +1,7 @@
 import {
-  ArrowLeftRight, CalendarCheck, CalendarDays, Crop, Flame, FileDown, FileImage, FileOutput, FileText,
-  GraduationCap, HeartPulse, ImageDown, Images, KeyRound, Landmark, ListTodo, Mail, Merge,
-  NotebookPen, Palette, PenLine, Percent, QrCode, Receipt, RotateCw, Scaling, SpellCheck, Split,
-  StickyNote, Tag, Timer,
+  ArrowLeftRight, CalendarCheck, CalendarDays, Crop, Flame, FileDown, FileImage, FileOutput,
+  HeartPulse, ImageDown, Images, KeyRound, Landmark, ListTodo, Merge, Palette, Percent, QrCode,
+  Receipt, RotateCw, Scaling, Split, StickyNote, Tag, Timer,
 } from "lucide-react";
 import type { Tool } from "@/types/tool";
 
@@ -37,19 +36,6 @@ export const tools: Tool[] = [
     shortDescription: "Create QR codes for links and text.", keywords: ["qr", "barcode", "link", "url"] },
   { slug: "color-palette-generator", name: "Color Palette Generator", category: "image-tools", icon: Palette, isNew: true,
     shortDescription: "Generate harmonious color palettes.", keywords: ["colors", "design", "hex", "theme"] },
-  // AI
-  { slug: "ai-summarizer", name: "AI Text Summarizer", category: "ai-tools", icon: FileText, popular: true,
-    shortDescription: "Condense long text into a clear summary.", keywords: ["summary", "tldr", "shorten"] },
-  { slug: "ai-email-writer", name: "AI Email Writer", category: "ai-tools", icon: Mail, isNew: true,
-    shortDescription: "Draft professional emails from a few notes.", keywords: ["write", "draft", "mail"] },
-  { slug: "ai-grammar-checker", name: "AI Grammar Checker", category: "ai-tools", icon: SpellCheck,
-    shortDescription: "Fix grammar, spelling and punctuation.", keywords: ["proofread", "spelling", "correct"] },
-  { slug: "ai-text-rewriter", name: "AI Text Rewriter", category: "ai-tools", icon: PenLine,
-    shortDescription: "Rewrite text in a different tone or style.", keywords: ["paraphrase", "tone", "reword"] },
-  { slug: "ai-notes-generator", name: "AI Notes Generator", category: "ai-tools", icon: NotebookPen, isNew: true,
-    shortDescription: "Turn raw text into structured study notes.", keywords: ["study", "notes", "outline"] },
-  { slug: "ai-explainer", name: "AI Explanation Assistant", category: "ai-tools", icon: GraduationCap,
-    shortDescription: "Get difficult concepts explained simply.", keywords: ["explain", "learn", "eli5"] },
   // Calculators
   { slug: "age-calculator", name: "Age Calculator", category: "calculators", icon: CalendarDays,
     shortDescription: "Find exact age in years, months and days.", keywords: ["birthday", "date of birth"] },
@@ -67,7 +53,7 @@ export const tools: Tool[] = [
     shortDescription: "Convert length, weight, temperature and more.", keywords: ["convert", "metric", "imperial"] },
   // Productivity
   { slug: "todo-list", name: "To-Do List", category: "productivity", icon: ListTodo, popular: true,
-    shortDescription: "Track tasks, saved locally or synced when logged in.", keywords: ["tasks", "checklist"] },
+    shortDescription: "Track tasks saved locally in this browser.", keywords: ["tasks", "checklist"] },
   { slug: "notes-manager", name: "Notes Manager", category: "productivity", icon: StickyNote,
     shortDescription: "Write and organize quick notes.", keywords: ["notes", "memo", "write"] },
   { slug: "pomodoro-timer", name: "Pomodoro Timer", category: "productivity", icon: Timer, popular: true,
@@ -79,4 +65,3 @@ export const tools: Tool[] = [
   { slug: "password-generator", name: "Password Generator", category: "productivity", icon: KeyRound, popular: true,
     shortDescription: "Create strong random passwords.", keywords: ["secure", "random", "security"] },
 ];
-
