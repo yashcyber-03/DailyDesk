@@ -70,8 +70,7 @@ test("zip is valid and CRCs match", async () => {
     { name: "a.txt", data: new TextEncoder().encode("hello") },
     { name: "folder/ü.pdf", data: new Uint8Array([1, 2, 3, 4]) },
   ]);
-  const { writeFileSync } = await import("node:fs");
-  writeFileSync("/tmp/dailydesk-test.zip", zip);
+  assert.deepEqual(Array.from(zip.slice(0, 4)), [0x50, 0x4b, 0x03, 0x04], "ZIP local-file header");
 });
 
 test("colors", () => {

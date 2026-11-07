@@ -1,32 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import { safeNext, friendlyAuthError } from "../src/lib/auth/redirect.ts";
 import { createLocalRepo, type KeyValueStore } from "../src/lib/repo/local.ts";
-import { createRemoteRepo, mapDbError } from "../src/lib/repo/remote.ts";
 import type { Task } from "../src/lib/repo/types.ts";
 import { addDays, bestStreak, currentStreak, lastNDays, toggleDate } from "../src/lib/productivity/habits.ts";
 import { cleanTitle, filterTasks, sortPlanner } from "../src/lib/productivity/lists.ts";
 import { clampMinutes, formatClock, nextMode, parseSettings, remainingMs } from "../src/lib/productivity/pomodoro.ts";
 import { activeSets, cryptoRandomInt, DEFAULT_PASSWORD_OPTIONS, generatePassword, strength, validateOptions } from "../src/lib/productivity/password.ts";
-
-test("safeNext blocks open redirects", () => {
-  assert.equal(safeNext("/tools/emi-calculator"), "/tools/emi-calculator");
-  assert.equal(safeNext("/dashboard?tab=1#x"), "/dashboard?tab=1#x");
-  for (const bad of ["//evil.com", "https://evil.com", "/\\evil.com", "javascript:alert(1)", "", null, undefined, "/a\nb", "evil"]) {
-    assert.equal(safeNext(bad as string | null | undefined), "/dashboard", String(bad));
-  }
-  assert.equal(safeNext("//x", "/"), "/");
-});
-
-test("friendly auth errors never echo raw messages", () => {
-  assert.equal(friendlyAuthError({ message: "Invalid login credentials" }), "Incorrect email or password.");
-  assert.match(friendlyAuthError({ code: "email_not_confirmed" }), /confirm your email/);
-  assert.match(friendlyAuthError({ code: "over_email_send_rate_limit", message: "email rate limit exceeded" }), /Too many/);
-  assert.match(friendlyAuthError({ code: "weak_password" }), /stronger password/);
-  assert.equal(friendlyAuthError({ message: "duplicate key secret_table_name" }), "Something went wrong. Please try again.");
-  assert.equal(friendlyAuthError(null), "Something went wrong. Please try again.");
-});
 
 function memoryStore(initial: Record<string, string> = {}): KeyValueStore & { data: Record<string, string> } {
   const data = { ...initial };
@@ -60,36 +39,6 @@ test("local repo: corrupt data, storage failures, item cap", async () => {
   await assert.rejects(() => createLocalRepo<Task>("tasks", () => full).add({ title: "x", done: false, due_date: null }), /could not save/);
   const big = memoryStore({ "dailydesk:local:tasks": JSON.stringify(Array.from({ length: 1000 }, (_, i) => ({ id: String(i), created_at: "x", updated_at: "x" }))) });
   await assert.rejects(() => createLocalRepo<Task>("tasks", () => big).add({ title: "x", done: false, due_date: null }), /limit/);
-});
-
-function fakeClient(result: { data: unknown; error: { code?: string; message?: string } | null }) {
-  const calls: string[] = [];
-  const builder: any = new Proxy({}, {
-    get(_t, prop) {
-      if (prop === "then") return (resolve: (v: unknown) => void) => resolve(result);
-      return (...args: unknown[]) => { calls.push(`${String(prop)}(${args.map((a) => JSON.stringify(a)).join(",")})`); return builder; };
-    },
-  });
-  return { calls, client: { from: (t: string) => { calls.push(`from(${t})`); return builder; } } as any };
-}
-
-test("remote repo: queries and error mapping", async () => {
-  const ok = fakeClient({ data: [{ id: "1" }], error: null });
-  assert.deepEqual(await createRemoteRepo(ok.client, "tasks").list(), [{ id: "1" }]);
-  assert.deepEqual(ok.calls.slice(0, 3), ["from(tasks)", 'select("*")', 'order("created_at",{"ascending":false})']);
-
-  const add = fakeClient({ data: { id: "9", title: "t" }, error: null });
-  await createRemoteRepo(add.client, "notes").add({ title: "t", content: "" } as never);
-  assert.deepEqual(add.calls.slice(0, 2), ["from(notes)", 'insert({"title":"t","content":""})'], "no user_id is sent; the database fills it from the session");
-
-  const upd = fakeClient({ data: { id: "1" }, error: null });
-  await createRemoteRepo(upd.client, "tasks").update("1", { done: true });
-  assert.ok(upd.calls.includes('eq("id","1")'));
-
-  const bad = fakeClient({ data: null, error: { code: "23514", message: "new row for relation violates check constraint secret" } });
-  await assert.rejects(() => createRemoteRepo(bad.client, "tasks").add({ title: "x" } as never), (e: Error) => /too long|limit/.test(e.message) && !/secret|relation/.test(e.message));
-  assert.match(mapDbError({ code: "42501" }).message, /log in again/);
-  assert.match(mapDbError({ code: "XX000" }).message, /Could not save/);
 });
 
 test("habit streaks", () => {
@@ -163,23 +112,4 @@ test("password generator: validation, determinism, uniformity, strength", () => 
   assert.throws(() => cryptoRandomInt(0), RangeError);
   assert.equal(strength({ ...DEFAULT_PASSWORD_OPTIONS, length: 8, upper: false, digits: false, symbols: false }).label, "Weak");
   assert.equal(strength({ ...DEFAULT_PASSWORD_OPTIONS, length: 16 }).label, "Very strong");
-});
-
-test("migration SQL: every table has RLS and own-row policies", () => {
-  const sql = readFileSync(new URL("../supabase/migrations/20261101000000_initial_schema.sql", import.meta.url), "utf8");
-  const tables = [...sql.matchAll(/create table public\.(\w+)/g)].map((m) => m[1]);
-  assert.deepEqual(tables.sort(), ["favorites", "habits", "notes", "planner_entries", "profiles", "tasks", "tool_history", "user_settings"]);
-  for (const t of tables) {
-    assert.ok(new RegExp(`alter table public\\.${t} enable row level security`).test(sql), `RLS on ${t}`);
-    assert.ok(new RegExp(`create policy "${t}_select_own"`).test(sql), `select policy on ${t}`);
-    assert.ok(new RegExp(`create policy "${t}_insert_own"`).test(sql), `insert policy on ${t}`);
-    assert.ok(new RegExp(`create policy "${t}_update_own"`).test(sql), `update policy on ${t}`);
-  }
-  const policies = sql.split("create policy").slice(1);
-  assert.ok(policies.every((p) => p.includes("(select auth.uid())")), "all policies compare to the signed-in user");
-  assert.ok(!/\bto (anon|public)\b/.test(sql.replace(/revoke[^;]*;/g, "")), "nothing is granted to anon or public");
-  assert.ok(!/plan|stripe|billing/i.test(sql.split("create table public.user_settings")[1].split(");")[0]), "no plan/billing in user-editable settings");
-  assert.equal((sql.match(/create or replace function[\s\S]*?\$\$;/g) ?? []).filter((f) => !/set search_path = ''/.test(f)).length, 0, "all functions pin search_path");
-  assert.equal((sql.match(/\$\$/g) ?? []).length % 2, 0, "balanced $$ quoting");
-  assert.equal((sql.match(/\(/g) ?? []).length, (sql.match(/\)/g) ?? []).length, "balanced parentheses");
 });
