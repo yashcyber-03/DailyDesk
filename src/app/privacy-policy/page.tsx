@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
-  description: "How DailyDesk handles your files, text, account details and saved data.",
+  description: "How DailyDesk handles your files and browser-local productivity data.",
   path: "/privacy-policy",
 });
 

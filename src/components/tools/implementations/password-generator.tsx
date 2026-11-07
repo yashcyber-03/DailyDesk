@@ -2,10 +2,10 @@
 
 import { RefreshCw } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import { CopyButton } from "@/components/ai/copy-button";
 import { Field } from "@/components/tools/ui";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { CopyButton } from "@/components/ui/copy-button";
 import {
   DEFAULT_PASSWORD_OPTIONS, generatePassword, MAX_LENGTH, MIN_LENGTH, strength, validateOptions,
   type PasswordOptions,

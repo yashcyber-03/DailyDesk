@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Terms and Conditions",
-  description: "The terms for using DailyDesk, including acceptable use, AI features and disclaimers.",
+  description: "The terms for using DailyDesk, including acceptable use and disclaimers.",
   path: "/terms-and-conditions",
 });
 

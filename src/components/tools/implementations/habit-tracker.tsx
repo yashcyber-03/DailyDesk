@@ -40,7 +40,7 @@ export default function HabitTracker() {
 
   return (
     <Card className="space-y-5 p-5 sm:p-6">
-      <SyncBanner mode={c.mode} configured={c.configured} localCount={c.localCount} onImport={c.importLocal} />
+      <SyncBanner />
       <form onSubmit={onAdd} className="flex flex-col gap-2 sm:flex-row">
         <label htmlFor="habit-name" className="sr-only">New habit</label>
         <Input id="habit-name" placeholder="New habit, for example: Read 20 minutes" maxLength={100} value={name} onChange={(e) => setName(e.target.value)} />

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { AuthProvider } from "@/components/auth/auth-provider";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -40,11 +39,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-3 focus:py-2">
             Skip to content
           </a>
-          <AuthProvider>
-            <Header />
-            <main id="main">{children}</main>
-            <Footer />
-          </AuthProvider>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

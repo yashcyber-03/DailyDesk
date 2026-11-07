@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "All Free Online Tools",
-  description: "Browse and search every DailyDesk tool: PDF, image, AI, calculators and productivity.",
+  description: "Browse and search every DailyDesk tool: PDF, image, calculators and productivity.",
   path: "/tools",
 });
 

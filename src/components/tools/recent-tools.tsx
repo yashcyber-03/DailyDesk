@@ -1,35 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-import { useAuth } from "@/components/auth/auth-provider";
 import { ToolGrid } from "@/components/tools/tool-card";
 import { Button } from "@/components/ui/button";
 import { recordRecentTool, useRecentTools } from "@/hooks/use-recent-tools";
-import { createClient } from "@/lib/supabase/client";
 
 export function RecordVisit({ slug }: { slug: string }) {
-  const { user, loading } = useAuth();
-  const userId = user?.id;
-
   useEffect(() => {
     recordRecentTool(slug);
   }, [slug]);
-
-  // Signed-in users also get their usage saved to their account (at most once a minute per tool).
-  useEffect(() => {
-    if (loading || !userId) return;
-    const key = `dailydesk:synced:${slug}`;
-    try {
-      if (Date.now() - Number(window.sessionStorage.getItem(key) ?? 0) < 60_000) return;
-      window.sessionStorage.setItem(key, String(Date.now()));
-    } catch {
-      // sessionStorage unavailable: record anyway
-    }
-    createClient().rpc("record_tool_use", { p_slug: slug }).then(
-      () => undefined,
-      () => undefined,
-    );
-  }, [slug, userId, loading]);
 
   return null;
 }

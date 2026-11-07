@@ -7,7 +7,6 @@ import { getPopularTools } from "@/lib/tools";
 const company = [
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
-  { href: "/pricing", label: "Pricing" },
   { href: "/privacy-policy", label: "Privacy Policy" },
   { href: "/terms-and-conditions", label: "Terms and Conditions" },
 ];
@@ -41,8 +40,6 @@ export function Footer() {
           <h2 className="text-sm font-medium">Explore</h2>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
             <li><Link href="/tools" className="hover:text-foreground">All tools</Link></li>
-            <li><Link href="/ai-assistant" className="hover:text-foreground">AI Assistant</Link></li>
-            <li><Link href="/dashboard" className="hover:text-foreground">Dashboard</Link></li>
             <li><Link href="/#faq" className="hover:text-foreground">FAQ</Link></li>
           </ul>
         </nav>

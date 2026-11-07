@@ -79,7 +79,7 @@ export default function NotesManager() {
 
   return (
     <Card className="space-y-5 p-5 sm:p-6">
-      <SyncBanner mode={c.mode} configured={c.configured} localCount={c.localCount} onImport={c.importLocal} />
+      <SyncBanner />
       {c.error && <ErrorMessage>{c.error}</ErrorMessage>}
       <div className="grid gap-5 md:grid-cols-[16rem_1fr]">
         <div className="space-y-3">

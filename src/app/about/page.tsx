@@ -7,15 +7,15 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "About DailyDesk",
-  description: "DailyDesk is a free, privacy-minded online toolkit that brings everyday PDF, image, AI, calculator and productivity tools into one place.",
+  description: "DailyDesk is a free, privacy-minded online toolkit that brings everyday PDF, image, calculator and productivity tools into one place.",
   path: "/about",
 });
 
 const principles = [
   { title: "Useful first", text: "Each tool does one job well, explains how it works and tells you its limits." },
-  { title: "Private by design", text: "PDF and image tools run in your browser, so your files are not uploaded. AI tools tell you clearly when text is sent to an AI service." },
-  { title: "Honest", text: "Results from calculators and AI are aids, not professional advice. We say so, and we do not invent reviews or claims." },
-  { title: "Works without an account", text: "Every tool can be used as a guest. Accounts are optional and only add syncing across devices." },
+  { title: "Private by design", text: "Tools run in your browser. Files and productivity data are not uploaded to DailyDesk." },
+  { title: "Honest", text: "Calculator results are aids, not professional advice. We explain limits and do not invent reviews or claims." },
+  { title: "Works without sign-in", text: "Every available tool is accessible without an account. There is no account or sync service." },
 ];
 
 export default function AboutPage() {
@@ -23,7 +23,7 @@ export default function AboutPage() {
     <div className="container max-w-3xl py-12">
       <h1 className="text-3xl font-semibold tracking-tight">About DailyDesk</h1>
       <p className="mt-4 text-muted-foreground">
-        DailyDesk is an independent online toolkit. Instead of searching for a different website every time you need to merge a PDF, shrink a photo, work out an EMI or tidy up an email, you can find
+        DailyDesk is an independent online toolkit. Instead of searching for a different website every time you need to merge a PDF, shrink a photo, work out an EMI or organize your day, you can find
         {" "}{tools.length} tools in {categories.length} categories in one clean place.
       </p>
       <p className="mt-4 text-muted-foreground">

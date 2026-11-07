@@ -57,7 +57,7 @@ export default function TodoList() {
 
   return (
     <Card className="space-y-5 p-5 sm:p-6">
-      <SyncBanner mode={c.mode} configured={c.configured} localCount={c.localCount} onImport={c.importLocal} />
+      <SyncBanner />
 
       <form onSubmit={onAdd} className="flex flex-col gap-2 sm:flex-row">
         <label htmlFor="todo-title" className="sr-only">New task</label>

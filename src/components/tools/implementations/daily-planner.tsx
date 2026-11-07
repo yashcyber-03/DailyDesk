@@ -51,7 +51,7 @@ export default function DailyPlanner() {
 
   return (
     <Card className="space-y-5 p-5 sm:p-6">
-      <SyncBanner mode={c.mode} configured={c.configured} localCount={c.localCount} onImport={c.importLocal} />
+      <SyncBanner />
 
       <div className="flex flex-wrap items-center gap-2">
         <Button variant="outline" size="icon" aria-label="Previous day" disabled={!date} onClick={() => setDate(addDays(date, -1))}><ChevronLeft className="h-4 w-4" /></Button>

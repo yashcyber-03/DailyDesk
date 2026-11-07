@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { AuthNav } from "@/components/auth/auth-nav";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -13,7 +12,6 @@ import { categories } from "@/config/categories";
 const navLinks = [
   { href: "/tools", label: "All Tools" },
   ...categories.map((c) => ({ href: c.href, label: c.name })),
-  { href: "/ai-assistant", label: "AI Assistant" },
 ];
 
 export function Header() {
@@ -33,8 +31,7 @@ export function Header() {
         <div className="ml-auto hidden w-72 md:block">
           <ToolSearch />
         </div>
-        <div className="ml-auto flex items-center gap-1 md:ml-0">
-          <div className="hidden sm:block"><AuthNav /></div>
+        <div className="ml-auto flex items-center gap-1">
           <ThemeToggle />
           <Button
             variant="ghost"
@@ -55,7 +52,6 @@ export function Header() {
             <div className="md:hidden">
               <ToolSearch onNavigate={() => setOpen(false)} />
             </div>
-            <div className="sm:hidden"><AuthNav stacked onNavigate={() => setOpen(false)} /></div>
             <nav aria-label="Mobile" className="grid gap-1">
               {navLinks.map((l) => (
                 <Link
