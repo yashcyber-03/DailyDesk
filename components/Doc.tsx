@@ -1,0 +1,2 @@
+import type {ReactNode} from "react";import {UPDATED} from "@/lib/site";
+export default function Doc({title,children}:{title:string;children:ReactNode}){return(<article className="mx-auto max-w-2xl space-y-4 text-sm leading-6 text-neutral-700 dark:text-neutral-300 [&_h2]:mt-6 [&_h2]:text-base [&_h2]:font-semibold [&_h2]:text-neutral-900 dark:[&_h2]:text-neutral-100 [&_ul]:list-disc [&_ul]:pl-5"><h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">{title}</h1><p className="text-xs text-neutral-500">Last updated: {UPDATED}</p>{children}</article>);}
