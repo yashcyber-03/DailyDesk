@@ -1,4 +1,5 @@
 "use client";import {useState} from "react";
+import type {PDFDocument as PDFDoc} from "pdf-lib";
 const MAX=50*1024*1024;
 const kb=(n:number)=>n>1048576?(n/1048576).toFixed(2)+" MB":(n/1024).toFixed(1)+" KB";
 const blobUrl=(b:BlobPart,type:string)=>URL.createObjectURL(new Blob([b],{type}));
