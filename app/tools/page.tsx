@@ -1,5 +1,6 @@
 import type {Metadata} from "next";
-import ExploreClient from "@/components/ExploreClient";
+import {Suspense} from "react";
+import ExploreFromUrl from "@/components/ExploreFromUrl";
 
 export const metadata: Metadata = {
   title: "Explore Tools",
@@ -7,19 +8,13 @@ export const metadata: Metadata = {
   alternates: {canonical: "/tools"},
 };
 
-export default function Page({
-  searchParams,
-}: {
-  searchParams: {q?: string; category?: string};
-}) {
+export default function Page() {
   return (
     <div>
       <h1 className="mb-4 text-2xl font-semibold">Explore Tools</h1>
-      <ExploreClient
-        key={`${searchParams.q || ""}-${searchParams.category || ""}`}
-        initialQuery={searchParams.q}
-        initialCategory={searchParams.category}
-      />
+      <Suspense fallback={<p className="text-sm text-neutral-500">Loading tools…</p>}>
+        <ExploreFromUrl />
+      </Suspense>
     </div>
   );
 }
