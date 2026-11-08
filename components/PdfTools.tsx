@@ -15,7 +15,7 @@ const move=(i:number)=>{if(i<1)return;const a=[...files];[a[i-1],a[i]]=[a[i],a[i
 const run=async()=>{reset();if(!files.length){setErr("Choose a file first.");return}if(mode==="merge-pdf"&&files.length<2){setErr("Choose at least two PDFs.");return}setBusy(true);
 try{const{PDFDocument}=await import("pdf-lib");
 const open=async(f:File)=>{try{return await PDFDocument.load(await f.arrayBuffer())}catch{throw new Error(BAD)}};
-const finish=async(d:InstanceType<typeof PDFDocument>,name:string)=>{const b=await d.save();setRes({url:blobUrl(b as BlobPart,"application/pdf"),name,size:b.length})};
+const finish=async(d:PDFDoc,name:string)=>{const b=await d.save();setRes({url:blobUrl(b as BlobPart,"application/pdf"),name,size:b.length})};
 if(mode==="merge-pdf"){const out=await PDFDocument.create();for(const f of files){const d=await open(f);(await out.copyPages(d,d.getPageIndices())).forEach(p=>out.addPage(p))}await finish(out,"merged.pdf")}
 else if(mode==="extract-pdf-pages"){const d=await open(files[0]);const idx=parse(range,d.getPageCount());const out=await PDFDocument.create();(await out.copyPages(d,idx)).forEach(p=>out.addPage(p));await finish(out,"extracted.pdf")}
 else if(mode==="pdf-info"){const d=await open(files[0]);const p=d.getPage(0);setInfo([`File size: ${kb(files[0].size)}`,`Pages: ${d.getPageCount()}`,`First page size: ${Math.round(p.getWidth())} × ${Math.round(p.getHeight())} pt`,`Title: ${d.getTitle()||"—"}`,`Author: ${d.getAuthor()||"—"}`,`Creator: ${d.getCreator()||"—"}`,`Created: ${d.getCreationDate()?.toLocaleString()||"—"}`])}
