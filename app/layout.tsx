@@ -4,7 +4,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://dailydesk.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://dailydesk-psi.vercel.app"),
   title: {
     default: "DailyDesk – Everything you need. One simple workspace.",
     template: "%s | DailyDesk",
