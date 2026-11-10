@@ -7,6 +7,7 @@ t("pdf-to-images","PDF to Images","Turn PDF pages into images.","PDF & Documents
 t("images-to-pdf","Images to PDF","Build a PDF from images.","PDF & Documents","jpg to pdf"),
 t("extract-pdf-pages","Extract PDF Pages","Pull selected pages out of a PDF.","PDF & Documents","split pdf"),
 t("pdf-info","PDF Page Information","See page count and metadata.","PDF & Documents","pdf details"),
+t("compress-pdf","Compress PDF","Reduce PDF file size by converting pages to compressed images.","PDF & Documents","reduce pdf size shrink smaller pdf"),
 t("image-compressor","Image Compressor","Reduce photo file size.","Image Tools","reduce photo size shrink compress"),
 t("image-resizer","Image Resizer","Change image dimensions.","Image Tools","resize scale"),
 t("png-to-jpg","PNG to JPG","Convert PNG images to JPG.","Image Tools","convert"),
@@ -41,5 +42,5 @@ export const popular=["merge-pdf","image-compressor","qr-generator","percentage-
 export const bySlug=(s:string)=>tools.find(x=>x.slug===s);
 export const search=(q:string)=>{const w=q.toLowerCase().split(/\s+/).filter(Boolean);return w.length?tools.filter(x=>w.every(k=>(x.name+" "+x.desc+" "+x.keywords+" "+x.category).toLowerCase().includes(k))):tools;};
 
-const LIVE=["merge-pdf","pdf-to-images","images-to-pdf","extract-pdf-pages","pdf-info","unit-converter","text-to-speech","speech-to-text","todo-list","notes","pomodoro-timer","countdown-timer","stopwatch","color-picker","qr-generator","image-compressor","image-resizer","png-to-jpg","jpg-to-png","image-converter"];
+const LIVE=["compress-pdf","merge-pdf","pdf-to-images","images-to-pdf","extract-pdf-pages","pdf-info","unit-converter","text-to-speech","speech-to-text","todo-list","notes","pomodoro-timer","countdown-timer","stopwatch","color-picker","qr-generator","image-compressor","image-resizer","png-to-jpg","jpg-to-png","image-converter"];
 tools.forEach(x=>{if(LIVE.includes(x.slug))x.live=true;});
