@@ -42,4 +42,7 @@ if(["word-counter","character-counter","case-converter","remove-extra-spaces","t
 const m:Record<string,()=>JSX.Element>={"percentage-calculator":Pct,"age-calculator":Age,"emi-calculator":Emi,"gst-calculator":Gst,"discount-calculator":Disc,"bmi-calculator":Bmi,"password-generator":Pw};
 const C=m[slug];return C?<C/>:<More slug={slug}/>;}
 
-export default function ToolUI({slug}:{slug:string}){useEffect(()=>{pushRecent(slug)},[slug]);return(<div><div className="mb-3 flex justify-end"><FavButton slug={slug}/></div><Inner slug={slug}/></div>);}
+export default function ToolUI({slug}:{slug:string}){
+const[k,setK]=useState(0);useEffect(()=>{pushRecent(slug)},[slug]);
+const saved=slug==="todo-list"||slug==="notes"; // these have their own "Delete saved data" button with confirmation
+return(<div><div className="mb-3 flex items-center justify-between"><div>{!saved&&<button className="rounded-lg border border-neutral-300 px-3 py-1 text-sm hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800" onClick={()=>{setK(k+1);toast("Cleared")}}>Clear</button>}</div><FavButton slug={slug}/></div><Inner key={k} slug={slug}/></div>);}
