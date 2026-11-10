@@ -75,7 +75,7 @@ return(<div className="space-y-3"><input type="file" accept="image/*" onChange={
 
 export default function More({slug}:{slug:string}){
 if(["image-compressor","image-resizer","png-to-jpg","jpg-to-png","image-converter"].includes(slug))return<Img mode={slug}/>;
-if(["merge-pdf","pdf-to-images","images-to-pdf","extract-pdf-pages","pdf-info"].includes(slug))return<Pdf mode={slug}/>;
+if(["compress-pdf","merge-pdf","pdf-to-images","images-to-pdf","extract-pdf-pages","pdf-info"].includes(slug))return<Pdf mode={slug}/>;
 switch(slug){case"unit-converter":return<Units/>;case"text-to-speech":return<Tts/>;case"speech-to-text":return<Stt/>;case"todo-list":return<Todo/>;case"notes":return<Notes/>;
 case"pomodoro-timer":return<Timer presets={[["Focus 25m",1500],["Short break 5m",300],["Long break 15m",900]]}/>;case"countdown-timer":return<Timer custom/>;case"stopwatch":return<Stopwatch/>;case"color-picker":return<Color/>;case"qr-generator":return<Qr/>;}
 return<p>Coming soon.</p>;}
